@@ -1,6 +1,6 @@
 <template>
   <div>
-    first demo 1
+    home page
   </div>
 </template>
 

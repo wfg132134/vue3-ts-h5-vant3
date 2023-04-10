@@ -18,6 +18,13 @@ export default defineConfig({
       '@': resolve('./src')
     }
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "@/assets/scss/variable.scss";`
+      },
+    }
+  },
   base: './', // 打包路径
   server: {
     port: 5000, // 服务端口号

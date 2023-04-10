@@ -1,7 +1,7 @@
 <template>
   <div>
     home page
-    <el-button type="primary">Primary</el-button>
+    <el-button type="primary" class="aa"><span>Primary</span></el-button>
   </div>
 </template>
 
@@ -15,4 +15,10 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.aa{
+  span {
+    color: $red;
+  }
+}
+</style>

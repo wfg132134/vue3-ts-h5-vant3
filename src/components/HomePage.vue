@@ -7,9 +7,12 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { getMydata } from '@/api'
 
 export default defineComponent({
   setup() {
+    const data = getMydata()
+    console.log('data',data);
     return {};
   },
 });

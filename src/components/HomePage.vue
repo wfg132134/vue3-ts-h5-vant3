@@ -9,11 +9,14 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { getMydata } from "@/api";
+import DB from "@/utils/indexedDB";
 
 export default defineComponent({
   setup() {
     const data = getMydata();
     console.log("data", data);
+    const db =new DB('mytest');
+    db.openStore('room','id');
     return {};
   },
 });

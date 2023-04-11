@@ -13,6 +13,8 @@ declare module '@vue/runtime-core' {
     Components: typeof import('./src/components/index.vue')['default']
     DetailPage: typeof import('./src/components/DetailPage.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
+    ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     HomePage: typeof import('./src/components/HomePage.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

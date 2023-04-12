@@ -4,8 +4,8 @@ export default class DB {
   constructor(dbName: string) {
     this.dbName = dbName
   }
-  public openStore(storeName: string, keyPath: string) {
-    const request = window.indexedDB.open(this.dbName, 1)
+  public openStore(storeName: string, keyPath: string, version: any = 1) {
+    const request = window.indexedDB.open(this.dbName, version)
     return new Promise((resolve,reject)=>{
       request.onsuccess = (event: any) => {
         this.db = event.target.result;
@@ -88,12 +88,16 @@ export default class DB {
     public getItemOne(storeName: string, key: number | string){
       const store = this.db.transaction([storeName]).objectStore(storeName);
       const request = store.get(key);
-      request.onsuccess = (event: any) => {
-        console.log("查询这条数据成功");
-        console.log(event.target.result);
-      }
-      request.onerror = (event:any) => {
-        console.log("查询这条数据失败");
-      }
+      return new Promise((resolve, reject)=>{
+        request.onsuccess = (event: any) => {
+          console.log("查询这条数据成功");
+          console.log(event.target.result);
+          resolve(event.target.result);
+        }
+        request.onerror = (event:any) => {
+          console.log("查询这条数据失败");
+          reject(event)
+        }
+      })
     }
 }

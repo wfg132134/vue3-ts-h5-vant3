@@ -20,13 +20,19 @@
 
 <script lang="ts" setup>
 import { ref, defineEmits } from "vue";
+import { saveLanguage, fetchLanguage } from "@/components/layout";
 const activeIndex = ref("orders");
 //  defineEmits使用类型声明
 const emit = defineEmits<{ (e: "changLanguage", value: string): void }>();
 // defineEmits运行时声明
 // const emit = defineEmits(["changLanguage"]);
-const handleSelect = (key: string, keyPath: string[]) => {
-  emit("changLanguage", key);
+
+fetchLanguage().then((res) => {
+  emit("changLanguage", res.result.name);
+});
+const handleSelect = (language: string, keyPath: string[]) => {
+  emit("changLanguage", language);
+  saveLanguage(language);
 };
 </script>
 

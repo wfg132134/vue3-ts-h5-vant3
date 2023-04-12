@@ -1,36 +1,10 @@
 <template>
   <div>
-    home page
-    <el-button type="primary" class="aa" @click="addDataHandel"
-      ><span>添加</span></el-button>
-      <el-button type="primary" class="aa" @click="getAllDataHandel">获取所有</el-button>
+    <h1>首页</h1>
     <el-date-picker type="date" placeholder="Pick a day" />
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import { getMydata, fetchMydata } from "@/api";
-import DB from "@/utils/indexedDB";
+<script lang="ts" setup></script>
 
-export default defineComponent({
-  setup() {
-    function getAllDataHandel() {
-      fetchMydata().then(res=>{
-        console.log('Mock接口',res);
-      })
-    }
-    return {
-      getAllDataHandel,
-    };
-  },
-});
-</script>
-
-<style lang="scss" scoped>
-.aa {
-  span {
-    color: $red;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

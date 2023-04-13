@@ -9,22 +9,22 @@ export default class DB {
     return new Promise((resolve,reject)=>{
       request.onsuccess = (event: any) => {
         this.db = event.target.result;
-        console.log("数据库打开成功");
-        console.log("event2", event);
+        // console.log("数据库打开成功");
+        // console.log("event2", event);
         resolve(true)
       }
       request.onerror = (event) => {
-        console.log("数据库打开失败");
+        // console.log("数据库打开失败");
       }
       request.onupgradeneeded = (event:any) => {
-        console.log("数据库升级成功");
+        // console.log("数据库升级成功");
         this.db = event.target.result;
         const { result }: any = event.target
         //创建对象仓库
         const store = result.createObjectStore(storeName, { autoIncrement: true, keyPath })
         //创建这个对象仓库成功的回调
         store.transaction.oncomplete =(event: any) => {
-          console.log("创建对象仓库成功");
+          // console.log("创建对象仓库成功");
         }
       }
     })
@@ -39,12 +39,12 @@ export default class DB {
     });
     return new Promise((resolve,reject)=>{
       request.onsuccess = (event: any) => {
-        console.log("数据写入成功");
-        console.log("event222", event);
+        // console.log("数据写入成功");
+        // console.log("event222", event);
         resolve(event)
       }
       request.onerror = (event:any) => {
-        console.log("数据写入失败");
+        // console.log("数据写入失败");
         reject(event)
       }
     })
@@ -57,12 +57,12 @@ export default class DB {
     return new Promise((resolve,reject)=>{
       request.onsuccess = (event: any) => {
         resolve(event)
-        console.log("数据删除成功");
+        // console.log("数据删除成功");
       }
       
       request.onerror = (event:any) => {
         resolve(event)
-        console.log("数据删除失败");
+        // console.log("数据删除失败");
       }
     })
   }
@@ -73,12 +73,12 @@ export default class DB {
     const request = store.getAll();
     return new Promise((resolve, reject)=>{
       request.onsuccess = (event: any) => {
-        console.log("数据获取全部成功");
+        // console.log("数据获取全部成功");
         console.log(event.target.result);
         resolve(event.target.result);
       }
       request.onerror = (event:any) => {
-        console.log("数据获取全部失败");
+        // console.log("数据获取全部失败");
         reject(event)
       }
     })
@@ -90,12 +90,12 @@ export default class DB {
       const request = store.get(key);
       return new Promise((resolve, reject)=>{
         request.onsuccess = (event: any) => {
-          console.log("查询这条数据成功");
-          console.log(event.target.result);
+          // console.log("查询这条数据成功");
+          // console.log(event.target.result);
           resolve(event.target.result);
         }
         request.onerror = (event:any) => {
-          console.log("查询这条数据失败");
+          // console.log("查询这条数据失败");
           reject(event)
         }
       })

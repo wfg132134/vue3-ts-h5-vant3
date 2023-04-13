@@ -21,16 +21,19 @@
 <script lang="ts" setup>
 import { ref, defineEmits } from "vue";
 import { saveLanguage, fetchLanguage } from "@/components/layout";
+import { useI18n } from "vue-i18n";
 const activeIndex = ref("orders");
 //  defineEmits使用类型声明
 const emit = defineEmits<{ (e: "changLanguage", value: string): void }>();
 // defineEmits运行时声明
 // const emit = defineEmits(["changLanguage"]);
-
+const { locale } = useI18n();
 fetchLanguage().then((res) => {
+  locale.value = res.result.name === 'zhCn' ? 'zh' : 'en';
   emit("changLanguage", res.result.name);
 });
 const handleSelect = (language: string, keyPath: string[]) => {
+  locale.value = language === 'zhCn' ? 'zh' : 'en';
   emit("changLanguage", language);
   saveLanguage(language);
 };

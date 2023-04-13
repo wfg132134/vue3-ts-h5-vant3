@@ -1,22 +1,18 @@
 <template>
-  <!-- 头部地方 -->
-  <header-common @chang-language="changLanguage"></header-common>
   <el-config-provider :locale="locale">
     <router-view></router-view>
   </el-config-provider>
 </template>
 <script setup lang="ts">
-import { computed, ref } from "vue";
-import zhCn from "element-plus/dist/locale/zh-cn.mjs";
+import { computed } from "vue";
+import zh from "element-plus/dist/locale/zh-cn.mjs";
 import en from "element-plus/dist/locale/en.mjs";
-import HeaderCommon from "@/components/layout/HeaderCommon";
+import { mainStore } from "@/store"; // 引入store
 
-let language = ref("zhCn");
+const store = mainStore();
+store.GET_LOCALE();
 let locale = computed(() => {
-  return language.value === "zhCn" ? zhCn : en;
+  return store.localeLanguage === "zh" ? zh : en;
 });
-const changLanguage = (val) => {
-  language.value = val
-};
 </script>
 <style scoped></style>

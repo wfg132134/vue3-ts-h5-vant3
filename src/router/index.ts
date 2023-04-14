@@ -41,6 +41,15 @@ const routes: RouteRecordRaw[] = [
           title: '详情'
         }
       },
+      {
+        path: "/form",
+        name: "form",
+        component: ()=>import('@/components/common/form/index.vue'),
+        meta:{
+          isAuth: false,
+          title: '详情'
+        }
+      },
     ]
   },
 ]

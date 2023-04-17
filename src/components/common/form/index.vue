@@ -52,6 +52,64 @@ let options: FormOptions[] = [
       validateOnRuleChange: false
     }
   },
+  {
+    type: "select",
+    value: "",
+    label: "选项框",
+    prop: 'part',
+    rules: [
+      {
+        required: true,
+        message: "内容不能为空",
+        trigger: "blur",
+      },
+    ],
+    attrs:{
+      style: {
+        width: '100%'
+      }
+    },
+    children: [
+      {
+        type: "option",
+        value: "1",
+        label: "经理",
+      },
+      {
+        type: "option",
+        value: "2",
+        label: "主管",
+      },
+      {
+        type: "option",
+        value: "3",
+        label: "员工",
+      }
+    ],
+  },
+  {
+    type: "checkbox-group",
+    value: [],
+    prop: 'checkList',
+    label: '运动',
+    children:[
+      {
+        type: "checkbox",
+        label: "游泳",
+        value: "3",
+      },
+      {
+        type: "checkbox",
+        label: "篮球",
+        value: "2",
+      },
+      {
+        type: "checkbox",
+        label: "足球",
+        value: "3",
+      }
+    ],
+  },
 ];
 </script>
 

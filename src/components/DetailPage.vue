@@ -1,103 +1,55 @@
 <template>
-  <div class="progress-bar">
-    <div class="bg"></div>
-    <div class="bar" :style="{ width: progress + '%' }"></div>
-    <div class="label">已加载 {{ progress.toFixed(0) }}%</div>
-
-    <el-button type="primary" @click="load" style="margin-top: 40px;">开始加载</el-button>
+  <div class="grid">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+    <div>10</div>
+    <div>11</div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref, onMounted } from "vue";
-
-let progress = ref<any>(0);
-
-let isPlaying = ref<boolean>(false);
-
-let isCompleted = ref<boolean>(false);
-
-onMounted(() => {
-  start();
-});
-
-const load = ()=> {
-  finish();
-}
-
- const start = () => {
-  isPlaying.value = true;
-  animateProgress(90,50000)
-    .then((res) => {
-      if (isCompleted.value) {
-        animateProgress(100,1000);
-      }
-    })
-    .catch((error) => {
-      console.log("error", error);
-    });
-};
-const finish = ()=> {
-    isCompleted.value = true;
-    progress.value = 100;
-}
-
-const animateProgress = (target, duration) => {
-  return new Promise((resolve, reject) => {
-    let start = progress.value;
-    let end = target;
-
-    const doAnimation = () => {
-      const elapsed = Date.now() - startTime;
-      
-      let currentProgress = Math.min(elapsed / duration, 1);
-
-      progress.value = start + (end - start) * currentProgress;
-
-      if (currentProgress === 1) {
-        resolve(true);
-      } else if (isCompleted.value) {
-        resolve(true);
-      } else {
-        requestAnimationFrame(doAnimation);
-      }
-    };
-    let startTime = Date.now();
-    
-    requestAnimationFrame(doAnimation);
-  });
-};
 </script>
 
-<style scoped>
-.progress-bar {
-  position: relative;
-  height: 8px;
-  width: 90%;
-  margin: 10px auto;
-}
-.bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #ccc;
-  border-radius: 5px;
-}
-.bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  border-radius: 5px;
-  background-color: #409eff;
-  transition: width 0.5s;
-}
-.label {
-  position: absolute;
-  top: 20px;
-  color: #333;
-  font-size: 12px;
+<style scoped lang="scss">
+.grid {
+  border: 1px solid #999;
+  width: 300px;
+  height: 200px;
+  display: grid;
+  margin: 20px;
+  /* 等同于 grid-template-columns: 1fr 1fr 1fr; */
+	grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr; /* 指定 2行 */
+  grid-auto-rows: 40px;
+
+  div {
+    background-color: bisque;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+
+    &:nth-of-type(1) {
+      grid-area: 1 / 1 / 2 / 4;
+    }
+
+    &:nth-of-type(2) {
+      grid-row: 2 / 4;
+    }
+
+    &:nth-of-type(3) {
+      grid-column: 2 / span 2; /* span表示占据几行，这里表示从2开始，占据2行，也就是网格线2到4 */
+    }
+
+    &:nth-of-type(6) {
+      grid-column: 1 / span 3;
+    }
+  }
 }
 </style>
